@@ -38,5 +38,11 @@ namespace WebAppMvcCore.Controllers
             ModelState.Clear();
             return View();
         }
+
+        public IActionResult Search()
+        {
+            var Courses = db.Courses.ToList();
+            return View(Courses);
+        }
     }
 }
