@@ -9,21 +9,18 @@ namespace WebAppMvcCore.DatabaseContext
 {
     public class ApplicationDbContext:DbContext
     {
-        public ApplicationDbContext()
+        
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {
             
         }
 
-        public ApplicationDbContext(DbContextOptions options):base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+            optionsBuilder.UseSqlServer("Server=RAKTIM-PC;Database=TrainingCenterDB;Trusted_Connection=true");
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
-        {
-            optionBuilder.UseSqlServer("Server=RAKTIM-PC;Database=TrainingCenter;Trusted_Connrction=True");
-        }
-
-        public DbSet<Course> TrainingCenter { get; set; }
+        public DbSet<Course> Courses { get; set; }
     }
 }
