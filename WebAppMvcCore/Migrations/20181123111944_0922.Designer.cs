@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAppMvcCore.DatabaseContext;
 
 namespace WebAppMvcCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181123111944_0922")]
+    partial class _0922
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,17 +31,11 @@ namespace WebAppMvcCore.Migrations
 
                     b.Property<string>("CourseName");
 
-                    b.Property<int?>("DepartmentsId");
-
-                    b.Property<int>("DeptId");
-
                     b.Property<string>("Time");
 
                     b.Property<string>("Trainer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DepartmentsId");
 
                     b.ToTable("Courses");
                 });
@@ -50,18 +46,22 @@ namespace WebAppMvcCore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DeptName");
+                    b.Property<int?>("CourseId");
+
+                    b.Property<string>("Departments");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
 
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("WebAppMvcCore.Models.Course", b =>
+            modelBuilder.Entity("WebAppMvcCore.Models.Department", b =>
                 {
-                    b.HasOne("WebAppMvcCore.Models.Department", "Departments")
-                        .WithMany("Courses")
-                        .HasForeignKey("DepartmentsId");
+                    b.HasOne("WebAppMvcCore.Models.Course")
+                        .WithMany("Departments")
+                        .HasForeignKey("CourseId");
                 });
 #pragma warning restore 612, 618
         }

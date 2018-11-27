@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebAppMvcCore.Models
 {
@@ -18,11 +19,15 @@ namespace WebAppMvcCore.Models
             CourseCode = courseCode;
             Trainer = trainer;
             Time = time;
+           
         }
         public int Id { get; set; }
         public string CourseName { get; set; }
         public string CourseCode { get; set; }
         public string Trainer { get; set; }
         public string Time { get; set; }
+        public int DeptId { get; set; }
+        public  virtual Department  Departments {get; set;}
+       
     }
 }

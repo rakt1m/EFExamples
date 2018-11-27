@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAppMvcCore.DatabaseContext;
 
 namespace WebAppMvcCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181123173709_Deptu")]
+    partial class Deptu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,8 +33,6 @@ namespace WebAppMvcCore.Migrations
 
                     b.Property<int?>("DepartmentsId");
 
-                    b.Property<int>("DeptId");
-
                     b.Property<string>("Time");
 
                     b.Property<string>("Trainer");
@@ -50,7 +50,7 @@ namespace WebAppMvcCore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DeptName");
+                    b.Property<string>("Departments");
 
                     b.HasKey("Id");
 

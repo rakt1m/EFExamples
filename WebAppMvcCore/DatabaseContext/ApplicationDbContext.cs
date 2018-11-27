@@ -22,5 +22,6 @@ namespace WebAppMvcCore.DatabaseContext
         }
 
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Department> Departments { get; set; }
     }
 }
