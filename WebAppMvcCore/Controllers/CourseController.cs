@@ -30,7 +30,7 @@ namespace WebAppMvcCore.Controllers
           IEnumerable<SelectListItem> departmentListItems = db.Departments.Select(c =>
                 new SelectListItem() { Value = c.Id.ToString(), Text = c.DeptName });
 
-            ViewData["Department"] = departmentListItems;
+            ViewData["DepartmentId"] = departmentListItems;
            
 
           
@@ -54,7 +54,7 @@ namespace WebAppMvcCore.Controllers
             IEnumerable<SelectListItem> departmentListItems = db.Departments.Select(c =>
                 new SelectListItem() { Value = c.Id.ToString(), Text = c.DeptName });
 
-            ViewData["Department"] = departmentListItems;
+            ViewData["DepartmentId"] = departmentListItems;
             bool isSaved = db.SaveChanges() > 0;
             if (isSaved)
             {
@@ -81,11 +81,14 @@ namespace WebAppMvcCore.Controllers
             {
                 return NotFound();
             }
-            
+            IEnumerable<SelectListItem> departmentListItems = db.Departments.Select(c =>
+                new SelectListItem() { Value = c.Id.ToString(), Text = c.DeptName });
+
+            ViewData["DepartmentId"] = departmentListItems;
             return View();
         }
         [HttpPost]
-        public IActionResult Update(int id, [Bind("Id,CourseName,CourseCode,Trainer,Time")] Course course)
+        public IActionResult Update(int id, [Bind("Id,CourseName,CourseCode,Trainer,Time,DepartmentId")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -111,6 +114,10 @@ namespace WebAppMvcCore.Controllers
                 }
                 return RedirectToAction("Search");
             }
+            IEnumerable<SelectListItem> departmentListItems = db.Departments.Select(c =>
+                new SelectListItem() { Value = c.Id.ToString(), Text = c.DeptName });
+
+            ViewData["DepartmentId"] = departmentListItems;
             return View();
         }
 

@@ -26,7 +26,7 @@ namespace WebAppMvcCore.Models
         public string CourseCode { get; set; }
         public string Trainer { get; set; }
         public string Time { get; set; }
-        public int DeptId { get; set; }
+        public int DepartmentId { get; set; } 
         public  virtual Department  Departments {get; set;}
        
     }

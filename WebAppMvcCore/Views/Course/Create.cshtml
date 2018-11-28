@@ -44,7 +44,7 @@
                 <input asp-for="Time" class="form-control" />
                 <span asp-validation-for="Time" class="text-danger"></span>
             </div>
-            @Html.DropDownList("Department", "Select Departments")
+            @Html.DropDownList("DepartmentId", "Select Departments")
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -54,7 +54,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Search">Back to List</a>
 </div>
 
 @section Scripts {

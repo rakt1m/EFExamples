@@ -16,10 +16,10 @@ namespace WebAppMvcCore.DatabaseContext
             
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=RAKTIM-PC;Database=TrainingCenterDB;Trusted_Connection=true");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=RAKTIM-PC;Database=TrainingCenterDB;Trusted_Connection=true");
+        //}
 
         public DbSet<Course> Courses { get; set; }
         public DbSet<Department> Departments { get; set; }
