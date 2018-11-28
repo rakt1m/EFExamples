@@ -19,6 +19,14 @@ namespace WebAppMvcCore.Controllers
         {
             this.db = db;
         }
+
+        public void DropDownlist()
+        {
+            IEnumerable<SelectListItem> departmentListItems = db.Departments.Select(c =>
+                new SelectListItem() { Value = c.Id.ToString(), Text = c.DeptName });
+
+            ViewData["DepartmentId"] = departmentListItems;
+        }
         public IActionResult Index()
         {
             return View();
@@ -26,11 +34,8 @@ namespace WebAppMvcCore.Controllers
 
         public IActionResult Create()
         {
-
-          IEnumerable<SelectListItem> departmentListItems = db.Departments.Select(c =>
-                new SelectListItem() { Value = c.DeptName.ToString(), Text = c.DeptName });
-            ViewData["DeptName"] = departmentListItems;
-            // ViewData["DepartmentId"] = departmentListItems;
+            DropDownlist();
+         
 
 
 
@@ -51,10 +56,7 @@ namespace WebAppMvcCore.Controllers
 
 
             db.Courses.Add(model);
-            IEnumerable<SelectListItem> departmentListItems = db.Departments.Select(c =>
-                new SelectListItem() { Value = c.DeptName.ToString(), Text = c.DeptName });
-            ViewData["DeptName"] = departmentListItems;
-            //ViewData["DepartmentId"] = departmentListItems;
+            DropDownlist();
             bool isSaved = db.SaveChanges() > 0;
             if (isSaved)
             {
@@ -81,15 +83,12 @@ namespace WebAppMvcCore.Controllers
             {
                 return NotFound();
             }
-            IEnumerable<SelectListItem> departmentListItems = db.Departments.Select(c =>
-                new SelectListItem() { Value = c.DeptName.ToString(), Text = c.DeptName });
-            ViewData["DeptName"] = departmentListItems;
-            // ViewData["DepartmentId"] = departmentListItems;
-          
+            DropDownlist();
+
             return View();
         }
         [HttpPost]
-        public IActionResult Update(int id, [Bind("Id,CourseName,CourseCode,Trainer,Time,DeptName")] Course course)
+        public IActionResult Update(int id, [Bind("Id,CourseName,CourseCode,Trainer,Time,DepartmentId")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -115,10 +114,7 @@ namespace WebAppMvcCore.Controllers
                 }
                 return RedirectToAction("Search");
             }
-            IEnumerable<SelectListItem> departmentListItems = db.Departments.Select(c =>
-                new SelectListItem() { Value = c.DeptName.ToString(), Text = c.DeptName });
-            ViewData["DeptName"] = departmentListItems;
-            // ViewData["DepartmentId"] = departmentListItems;
+            DropDownlist();
             return View();
         }
 
